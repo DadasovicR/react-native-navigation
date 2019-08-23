@@ -7,6 +7,8 @@ import com.facebook.react.bridge.JavaJSExecutor;
 import com.facebook.react.devsupport.ReactInstanceManagerDevHelper;
 // import com.facebook.react.devsupport.ReactInstanceDevCommandsHandler;
 import com.reactnativenavigation.utils.ReflectionUtils;
+import com.facebook.react.bridge.NativeDeltaClient;
+import androidx.annotation.Nullable;
 
 class JsDevReloadListenerReplacer {
     private final ReactInstanceManager reactInstanceManager;
@@ -57,9 +59,9 @@ class JsDevReloadListenerReplacer {
         }
 
         @Override
-        public void onJSBundleLoadedFromServer() {
+        public void onJSBundleLoadedFromServer(@Nullable NativeDeltaClient nativeDeltaClient) {
             listener.onJsDevReload();
-            originalReactHandler.onJSBundleLoadedFromServer();
+            originalReactHandler.onJSBundleLoadedFromServer(nativeDeltaClient);
         }
 
         @Override
